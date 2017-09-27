@@ -1,0 +1,15 @@
+{
+  "name": "UserApi",
+  "version": "1.0.0",
+  "description": "REST API - Users",
+  "dependencies": {
+    "restify": "4.1.1",
+    "save": "2.3.0"
+  },
+  "author": "timbo.rafa",
+  "private": true,
+  "main": "index.js",
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1"
+  }
+}
