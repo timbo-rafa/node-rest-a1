@@ -1,5 +1,5 @@
 var SERVER_NAME = 'patient-api'
-var PORT = 8080;
+var PORT = 8000;
 var HOST = '127.0.0.1';
 
 
