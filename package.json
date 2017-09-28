@@ -4,7 +4,8 @@
   "description": "REST API - Users",
   "dependencies": {
     "restify": "4.1.1",
-    "save": "2.3.0"
+    "save": "2.3.0",
+    "restify-router": "^0.4.2"
   },
   "author": "timbo.rafa",
   "private": true,
