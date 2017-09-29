@@ -1,11 +1,12 @@
 {
-  "name": "UserApi",
+  "name": "Assignment 1 - Products server",
   "version": "1.0.0",
-  "description": "REST API - Users",
+  "description": "Server that stores and provides information about products",
   "dependencies": {
+    "express-mung": "^0.4.6",
     "restify": "4.1.1",
-    "save": "2.3.0",
-    "restify-router": "^0.4.2"
+    "restify-router": "^0.4.2",
+    "save": "2.3.0"
   },
   "author": "timbo.rafa",
   "private": true,
