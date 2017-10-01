@@ -15,6 +15,9 @@ server
   .use(restify.bodyParser())
 
 server.use( utils.requestLogger )
+
+// Announce endpoints
+console.log('Server endpoints:')
 // handle products requests
 require('./products/product-controller').applyRoutes(server, '/products')
 
@@ -26,7 +29,4 @@ server.get('/', function pingSuccess (req, res, next) {
 
 server.listen(PORT, HOST, function () {
   console.log('Server %s listening at %s', server.name, server.url)
-  console.log('Resources:')
-  console.log(' /products')
-  console.log(' /products/:id')
 })

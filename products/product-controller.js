@@ -6,6 +6,7 @@ const router = new Router()
 var productsSave = require('save')('products')
 
 // Get all products in the system
+console.log('GET /products list products')
 router.get('/', function (req, res, next) {
   // Find every entity within the given collection
   productsSave.find({}, function (error, products) {
@@ -15,6 +16,7 @@ router.get('/', function (req, res, next) {
 })
 
   // Create a new product
+console.log('POST /products new product')
 router.post( '/', function (req, res, next) {
     
       // Make sure name is defined
@@ -43,6 +45,7 @@ router.post( '/', function (req, res, next) {
 })
 
 // Get a single product by their product id
+console.log('GET /products/:id get product by id')
 router.get('/:id', function (req, res, next) {  
   // Find a single product by their id within save
   productsSave.findOne({ _id: req.params.id }, function (error, product) {
@@ -60,6 +63,7 @@ router.get('/:id', function (req, res, next) {
 })
   
 // Update a product by their id
+console.log('PUT /products/:id update product')
 router.put('/:id', function (req, res, next) {
   
   // Make sure name is defined
@@ -90,6 +94,7 @@ router.put('/:id', function (req, res, next) {
 })
 
 // Delete product with the given id
+console.log('DEL /products/:id delete product')
 router.del('/:id', function (req, res, next) {
 
   // Delete the product with the persistence engine
