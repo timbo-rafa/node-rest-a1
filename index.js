@@ -15,7 +15,6 @@ server
   .use(restify.bodyParser())
 
 server.use( utils.requestLogger )
-server.use( utils.mungjson )
 // handle products requests
 require('./products/product-controller').applyRoutes(server, '/products')
 

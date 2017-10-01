@@ -1,5 +1,4 @@
 const constants = require('./const')
-const mung = require('express-mung')
 
 var getTime = function getTime() {
     var date = new Date();
@@ -21,17 +20,8 @@ var getTime = function getTime() {
 
 module.exports.requestLogger = function requestLogger(request, response, next) {
   console.log(getTime(), 'REQUEST', 
-    request.method, request.url)
+    request.method, request.url, request.params)
   next()
 }
-
-module.exports.mungjson = mung.json(
-  function transform(body, req, res) {
-    if (body instanceof Array) {
-      console.log(getTime(),'ARRAY RESPONSE', res.statusCode, body.length)
-    } else console.log(getTime(), 'RESPONSE', res.statusCode, body)
-    return body
-  }
-)
 
 module.exports.getTime = getTime
