@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Server that stores and provides information about products",
   "dependencies": {
+    "morgan": "^1.9.0",
     "restify": "4.1.1",
     "restify-router": "^0.4.2",
     "save": "2.3.0"
