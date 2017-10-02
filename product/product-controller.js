@@ -108,4 +108,15 @@ router.del('/:id', function (req, res, next) {
   })
 })
 
+// Delete ALL products
+console.log('DEL /products del ALL products')
+router.del('/', function (req, res, next) {
+  productsSave.deleteMany({}, function (error) {
+    if (error) {
+      return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+    }
+    res.send(204)
+  })
+})
+
 module.exports = router

@@ -11,5 +11,13 @@
   "author": "timbo.rafa",
   "private": true,
   "main": "index.js",
-  "devDependencies": {}
+  "scripts": {
+    "test": "NODE_ENV=test mocha",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.3",
+    "should": "^13.1.0",
+    "supertest": "^3.0.0"
+  }
 }

@@ -14,14 +14,23 @@ server
   .use(restify.fullResponse())
 
   // Maps req.body to req.params so there is no switching between them
+  .use(restify.acceptParser(server.acceptable))
   .use(restify.bodyParser())
+  .use(restify.queryParser())
+  //server.use( utils.requestLogger )
+  .use(function (request, response, next) {
+    response.header('Content-Type', 'application/json')
+    response.header('Content-Encoding', 'UTF-8')
+    response.header('Content-Language', 'en')
+    next()
+  })
 
-//server.use( utils.requestLogger )
 
+const productRouter = require('./product/product-controller')  
 // Announce endpoints
 console.log('Server endpoints:')
 // handle products requests
-require('./products/product-controller').applyRoutes(server, '/products')
+productRouter.applyRoutes(server, '/products')
 
 // server ping (last route)
 server.get('/', function pingSuccess (req, res, next) {
@@ -32,3 +41,5 @@ server.get('/', function pingSuccess (req, res, next) {
 server.listen(PORT, HOST, function () {
   console.log('Server %s listening at %s', server.name, server.url)
 })
+
+module.exports = server
