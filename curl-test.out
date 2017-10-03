@@ -1,0 +1,29 @@
+Pinging server...
+
+Listing products:
+[]
+Posting products:
+{"name":"Pen","price":"1.00","quantity":"999995","_id":"1"}
+{"name":"Tostitos","price":"2.57","quantity":"5000","_id":"2"}
+{"name":"Yogurt","price":"4.00","quantity":"100","_id":"3"}
+{"name":"Pizza","price":"4.22","quantity":-1,"_id":"4"}
+Listing products:
+[{"name":"Pen","price":"1.00","quantity":"999995","_id":"1"},{"name":"Tostitos","price":"2.57","quantity":"5000","_id":"2"},{"name":"Yogurt","price":"4.00","quantity":"100","_id":"3"},{"name":"Pizza","price":"4.22","quantity":-1,"_id":"4"}]
+Deleting product id=2:
+
+Listing products:
+[{"name":"Pen","price":"1.00","quantity":"999995","_id":"1"},{"name":"Yogurt","price":"4.00","quantity":"100","_id":"3"},{"name":"Pizza","price":"4.22","quantity":-1,"_id":"4"}]
+Getting deleted product id=2:
+
+Getting product id=1:
+{"name":"Pen","price":"1.00","quantity":"999995","_id":"1"}
+Updating product id=1:
+{"name":"Pen","price":"0.10","quantity":"999995","_id":"1"}
+Getting product id=1:
+{"name":"Pen","price":"0.10","quantity":"999995","_id":"1"}
+Updating non-existent product id=999999:
+{"code":"InvalidArgument","message":"undefined"}
+Deleting ALL products:
+
+Listing products:
+[]
