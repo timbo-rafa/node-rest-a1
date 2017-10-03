@@ -18,7 +18,8 @@ router.get('/', function (req, res, next) {
   // Create a new product
 console.log('POST /products new product')
 router.post( '/', function (req, res, next) {
-    
+  var quantity = -1
+
       // Make sure name is defined
   if (req.params.name === undefined) {
     // If there are any errors, pass them to next in the correct format
@@ -28,9 +29,14 @@ router.post( '/', function (req, res, next) {
     // If there are any errors, pass them to next in the correct format
     return next(new restify.InvalidArgumentError('price must be supplied'))
   }
+
+  if (req.params.quantity) {
+    quantity = req.params.quantity
+  }
   var newProduct = {
     name: req.params.name,
-    price: req.params.price
+    price: req.params.price,
+    quantity: quantity
   }
 
   // Create the product using the persistence engine
@@ -65,31 +71,19 @@ router.get('/:id', function (req, res, next) {
 // Update a product by their id
 console.log('PUT /products/:id update product')
 router.put('/:id', function (req, res, next) {
-  
-  // Make sure name is defined
-  if (req.params.name === undefined) {
-    // If there are any errors, pass them to next in the correct format
-    return next(new restify.InvalidArgumentError('name must be supplied'))
-  }
-  if (req.params.price === undefined) {
-    // If there are any errors, pass them to next in the correct format
-    return next(new restify.InvalidArgumentError('price must be supplied'))
-  }
 
-  var newProduct = {
-    _id: req.params.id,
-    name: req.params.name,
-    price: req.params.price
-  }
+  var updatedProduct = {_id: req.params.id }
+  if (req.params.name)     updatedProduct.name     = req.params.name
+  if (req.params.price)    updatedProduct.price    = req.params.price
+  if (req.params.quantity) updatedProduct.quantity = req.params.quantity
 
   // Update the product with the persistence engine
-  productsSave.update(newProduct, function (error, product) {
-
+  productsSave.update(updatedProduct, function (error, product) {
     // If there are any errors, pass them to next in the correct format
     if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
 
-    // Send a 200 OK response
-    res.send(200)
+    //Send updated product
+    res.send(product)
   })
 })
 
@@ -115,7 +109,7 @@ router.del('/', function (req, res, next) {
     if (error) {
       return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
     }
-    res.send(204)
+    res.send(204) // Success, but no content to return
   })
 })
 
