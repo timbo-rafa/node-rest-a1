@@ -1,7 +1,7 @@
 const SERVER_NAME = 'product-api'
 const PORT = 8000;
 const HOST = '127.0.0.1';
-//const utils = require('./utils/utils')
+const utils = require('./utils/utils')
 const restify = require('restify')
 const morganLogger = require('morgan')
 
@@ -14,16 +14,8 @@ server
   .use(restify.fullResponse())
 
   // Maps req.body to req.params so there is no switching between them
-  .use(restify.acceptParser(server.acceptable))
   .use(restify.bodyParser())
-  .use(restify.queryParser())
-  //server.use( utils.requestLogger )
-  .use(function (request, response, next) {
-    response.header('Content-Type', 'application/json')
-    response.header('Content-Encoding', 'UTF-8')
-    response.header('Content-Language', 'en')
-    next()
-  })
+  server.use( utils.requestLogger )
 
 
 const productRouter = require('./product/product-controller')  

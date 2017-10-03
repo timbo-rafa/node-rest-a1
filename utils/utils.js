@@ -18,9 +18,32 @@ var getTime = function getTime() {
       + " " + hour + constants.HOUR_SEPARATOR + min + constants.HOUR_SEPARATOR + sec + "]";
 }
 
+var requestCount = {}
 module.exports.requestLogger = function requestLogger(request, response, next) {
-  console.log(getTime(), 'REQUEST', 
-    request.method, request.url, request.params)
+  //console.log(getTime(), 'REQUEST',  request.method, request.url, request.params)
+  
+  //initialize counter of url if it does not exist
+  if (!requestCount[request.url]) {
+    requestCount[request.url] = {}
+  }
+  //initialize counter of method if it does not exist
+  if (!requestCount[request.url][request.method]) {
+    requestCount[request.url][request.method] = 0
+  }
+
+    //increment counter for url and method
+    requestCount[request.url][request.method] += 1
+
+    console.log('======== REQUEST COUNT =========')
+    //list requested url and method counter
+    //console.log(requestCount[request.url][request.method] + " " + request.method.toString() + "(s) at", request.url)
+    // list all available counters
+    Object.keys(requestCount).forEach( function listUrl (url) {
+      Object.keys(requestCount[url]).forEach( function listMethod (method) {
+        console.log(requestCount[url][method] + " " + method + "(s) at", url)
+      } )
+    })
+    console.log('================================')
   next()
 }
 
