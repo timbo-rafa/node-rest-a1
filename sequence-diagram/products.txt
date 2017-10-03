@@ -1,0 +1,36 @@
+User->Web API: Http GET
+
+Note right of User: GET \n/products/\n
+
+Web API->Product Controller: Find Products
+
+Product Controller->Web API: Return Products
+
+Web API->User: Http Response 200 OK\n
+
+Note right of User: [<products>]
+
+
+
+User->Web API: Http POST
+
+Note right of User: POST \n/products/\n{id:1, name:"Pencil", price:"0.10"}
+
+Web API->Product Controller: Create Product
+
+Product Controller->Web API: Return Product
+
+Web API->User: Http Response 200 OK\n
+
+Note right of User: {<product1>}
+
+
+User->Web API: Http DEL
+
+Note right of User: DELETE \n/products/
+
+Web API->Product Controller: Delete ALL Products
+
+Product Controller->Web API: Success
+
+Web API->User: Http Response 204 OK\n
