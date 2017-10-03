@@ -12,7 +12,7 @@ FROZEN_PIZZA="name=Pizza&price=4.22"
 YOGURT="name=Yogurt&price=4.00&quantity=100"
 
 echo "Pinging server..."
-curl $DOMAIN
+curl -w "Server returned %{http_code}\n" $DOMAIN
 read
 
 echo "Listing products:"
@@ -31,9 +31,10 @@ read
 
 echo "Listing products:"
 curl $PRODUCT_URL
+read
 
 echo "Deleting product id=2:"
-curl -X DELETE $PRODUCT_URL/2
+curl -w "Server returned %{http_code}\n" -X DELETE $PRODUCT_URL/2
 read
 
 echo "Listing products:"
@@ -41,7 +42,7 @@ curl $PRODUCT_URL
 read
 
 echo "Getting deleted product id=2:"
-curl $PRODUCT_URL/2
+curl -w "Server returned %{http_code}\n" $PRODUCT_URL/2
 read
 
 echo "Getting product id=1:"
@@ -57,11 +58,11 @@ curl $PRODUCT_URL/1
 read
 
 echo "Updating non-existent product id=999999:"
-curl -X PUT --data "price=1000.0" $PRODUCT_URL/999999
+curl -w "Server returned %{http_code}\n" -X PUT --data "price=1000.0" $PRODUCT_URL/999999
 read
 
 echo "Deleting ALL products:"
-curl -X DELETE $PRODUCT_URL
+curl -w "Server returned %{http_code}\n" -X DELETE $PRODUCT_URL
 read
 
 echo "Listing products:"
